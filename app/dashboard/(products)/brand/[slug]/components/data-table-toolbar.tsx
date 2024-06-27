@@ -20,6 +20,11 @@ export const getStaticProps: GetStaticProps = async () => {
         },
     };
 };
+// interface RowData {
+//     type: {
+//         type_name: string;
+//     };
+// }
 
 interface DataTableToolbarProps<TData> {
     table: Table<TData>;
@@ -42,7 +47,7 @@ export function DataTableToolbar<TData>({
         if (!categoryColumn) return [];
 
         const categoryValues = new Set(
-            table.getPreFilteredRowModel().rows.map((row) => row.getValue("type")?.type_name)
+            table.getPreFilteredRowModel().rows.map((row) => row.getValue("type").type_name)
         );
 
         return Array.from(categoryValues).map((category) => ({
@@ -79,32 +84,32 @@ export function DataTableToolbar<TData>({
 
     return (
         <div className="flex items-center justify-between">
-            <div className="flex flex-1 items-center space-x-2">
-                {table.getColumn("product_status") && (
-                    <DataTableFacetedFilter
-                        column={table.getColumn("product_status")}
-                        title="Status"
-                        options={statuses}
-                    />
-                )}
-                {table.getColumn("type") && (
-                    <DataTableFacetedFilter
-                        column={table.getColumn("type")}
-                        title="Type"
-                        options={uniqueTypes}
-                    />
-                )}
-                {isFiltered && (
-                    <Button
-                        variant="ghost"
-                        onClick={() => table.resetColumnFilters()}
-                        className="h-8 px-2 lg:px-3"
-                    >
-                        Reset
-                        <Cross2Icon className="ml-2 h-4 w-4" />
-                    </Button>
-                )}
-            </div>
+            {/*<div className="flex flex-1 items-center space-x-2">*/}
+            {/*    {table.getColumn("product_status") && (*/}
+            {/*        <DataTableFacetedFilter*/}
+            {/*            column={table.getColumn("product_status")}*/}
+            {/*            title="Status"*/}
+            {/*            options={statuses}*/}
+            {/*        />*/}
+            {/*    )}*/}
+            {/*    {table.getColumn("type") && (*/}
+            {/*        <DataTableFacetedFilter*/}
+            {/*            column={table.getColumn("type")}*/}
+            {/*            title="Type"*/}
+            {/*            options={uniqueTypes}*/}
+            {/*        />*/}
+            {/*    )}*/}
+            {/*    {isFiltered && (*/}
+            {/*        <Button*/}
+            {/*            variant="ghost"*/}
+            {/*            onClick={() => table.resetColumnFilters()}*/}
+            {/*            className="h-8 px-2 lg:px-3"*/}
+            {/*        >*/}
+            {/*            Reset*/}
+            {/*            <Cross2Icon className="ml-2 h-4 w-4" />*/}
+            {/*        </Button>*/}
+            {/*    )}*/}
+            {/*</div>*/}
             <div className="flex flex-1 items-center space-x-2">
                 <DataTableViewOptions table={table} />
                 <Button

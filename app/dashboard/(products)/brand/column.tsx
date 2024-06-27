@@ -56,16 +56,16 @@ export const columns: ColumnDef<Brand>[] = [
             return value.includes(categoryName);
         },
     },
-    {
-        accessorKey: "products",
-        header: ({column}) => (
-            <DataTableColumnHeader column={column} title="Brand Products"/>
-        ),
-        cell: ({row}) => {
-            const brand = row.original;
-            return <span>{brand.products?.length}</span>;
-        },
-    },
+    // {
+    //     accessorKey: "products",
+    //     header: ({column}) => (
+    //         <DataTableColumnHeader column={column} title="Brand Products"/>
+    //     ),
+    //     cell: ({row}) => {
+    //         const brand = row.original;
+    //         return <span>{brand.products?.length}</span>;
+    //     },
+    // },
     {
         accessorKey: "brand_status",
         header: ({column}) => (
@@ -111,8 +111,8 @@ export const columns: ColumnDef<Brand>[] = [
                         <CheckCircledIcon />
                     </Button>
                     <Button variant="ghost" className="bg-destructive" onClick={()=>{
-                        handleDelete(category.category_id).then(r => console.log(r))
-                        console.log("id : ",category.category_id,category.category_name)
+                        // handleDelete(category.category_id).then(r => console.log(r))
+                        // console.log("id : ",category.category_id,category.category_name)
                     }}>
                         <Trash2Icon className="w-4 h-4" />
                     </Button>
