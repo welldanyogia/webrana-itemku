@@ -5,7 +5,7 @@ import crypto from 'crypto';
 import { db } from "@/lib/db";
 import {NextRequest, NextResponse} from "next/server";
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {
         return NextResponse.json({ error: 'Method not allowed' });
     }
