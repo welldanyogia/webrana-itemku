@@ -1,0 +1,244 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // uncomment next line if you use Prisma <5.10
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  accounts      Account[]
+  // sessions      Session[]
+  // Optional for WebAuthn support
+  // Authenticator Authenticator[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model DigiAuth {
+  id           Int      @id @default(autoincrement())
+  username     String
+  api_key      String
+  digi_balance Int? // Nullable integer field
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
+}
+
+model Transaction {
+  trx_id           String        @id @default(uuid())
+  // buyer_id         String?
+  tujuan           String
+  // server_id        String?
+  user_name        String?
+  phone_number     String?
+  email            String?
+  buyer_sku_code   String
+  product_brand    String
+  product_name     String
+  amount           Int
+  status           String?
+  payment_method   String
+  payment_name     String
+  no_va            String?
+  no_rekening      String?
+  payment_status   PaymentStatus @default(UNPAID)
+  expired_time     DateTime?
+  qr_url           String?
+  qr_string        String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  digiflazz_status String?
+  data_trx         Json?
+  product_price    Int?          @default(0)
+  fee              Int?          @default(0)
+  unique_code      Int?          @default(1)
+  qty              Int?          @default(1)
+  product_id       Int
+  brand_id         String
+
+  product Product @relation(fields: [product_id], references: [id])
+  brand   Brand   @relation(fields: [brand_id], references: [brand_id])
+}
+
+model Category {
+  category_id     String   @id @default(uuid())
+  category_name   String
+  category_status Boolean
+  code            String   @unique
+  brands          Brand[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Type {
+  type_id     String    @id @default(uuid())
+  type_name   String
+  type_status Boolean
+  code        String    @unique
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Brand {
+  brand_id           String           @id @default(uuid())
+  brand_name         String
+  image_url          String? // nullable
+  brand_status       Boolean
+  processed_by       ProcessedBy      @default(DIGIFLAZZ)
+  category_id        String?
+  category           Category?        @relation(fields: [category_id], references: [category_id])
+  products           Product[]
+  mass_profit        Decimal?         @db.Decimal(10, 2) // nullable
+  fee_itemku         Decimal?         @db.Decimal(10, 2) // nullable
+  mass_profit_status Boolean          @default(false)
+  code               String           @unique
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  FormInputBrands    FormInputBrand[]
+  Transaction        Transaction[]
+}
+
+model Product {
+  id                    Int           @id @default(autoincrement())
+  product_name          String
+  brand_id              String?
+  brand                 Brand?        @relation(fields: [brand_id], references: [brand_id])
+  type_id               String?
+  type                  Type?         @relation(fields: [type_id], references: [type_id])
+  seller_name           String
+  price                 Int
+  selling_price         Int           @default(0)
+  buyer_sku_code        String        @unique
+  product_status        Boolean? // nullable
+  buyer_product_status  Boolean
+  seller_product_status Boolean
+  unlimited_stock       Boolean
+  stock                 String
+  multi                 Boolean
+  start_cut_off         String
+  end_cut_off           String
+  desc                  String? // nullable
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+  Transaction           Transaction[]
+}
+
+model FormInputBrand {
+  form_input_id Int       @id @default(autoincrement())
+  name          String
+  type          InputType
+  brand_id      String
+  Brand         Brand     @relation(fields: [brand_id], references: [brand_id], onDelete: Cascade)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  OptionSelectInputs OptionSelectInput[]
+}
+
+model OptionSelectInput {
+  id             Int            @id @default(autoincrement())
+  value          String
+  name           String
+  form_input_id  Int
+  FormInputBrand FormInputBrand @relation(fields: [form_input_id], references: [form_input_id], onDelete: Cascade)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+enum InputType {
+  number
+  text
+  select
+}
+
+enum Status {
+  pending
+  process
+  failed
+  success
+}
+
+enum PaymentStatus {
+  PAID
+  FAILED
+  EXPIRED
+  REFUND
+  UNPAID
+}
+
+enum ProcessedBy {
+  MANUAL
+  DIGIFLAZZ
+}
+
+// model Session {
+//   sessionToken String   @unique
+//   userId       String
+//   expires      DateTime
+//   user         User     @relation(fields: [userId], references: [form_input_id], onDelete: Cascade)
+//
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
+
+// model VerificationToken {
+//   identifier String
+//   token      String
+//   expires    DateTime
+//
+//   @@form_input_id([identifier, token])
+// }
+//
+// // Optional for WebAuthn support
+// model Authenticator {
+//   credentialID         String  @unique
+//   userId               String
+//   providerAccountId    String
+//   credentialPublicKey  String
+//   counter              Int
+//   credentialDeviceType String
+//   credentialBackedUp   Boolean
+//   transports           String?
+//
+//   user User @relation(fields: [userId], references: [form_input_id], onDelete: Cascade)
+//
+//   @@form_input_id([userId, credentialID])
+// }
