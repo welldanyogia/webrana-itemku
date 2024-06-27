@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { auth } from '@/auth';
-import {NextResponse} from "next/server"; // Assuming auth logic is implemented here
+import {NextRequest, NextResponse} from "next/server"; // Assuming auth logic is implemented here
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest, res: NextApiResponse) {
     try {
         const user = await auth(); // Fetch user data
         return NextResponse.json({ user });
