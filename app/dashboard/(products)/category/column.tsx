@@ -38,7 +38,7 @@ const handleDelete = async (category_id: string) => {
 export type Category = {
     category_id: string;
     category_name: string;
-    category_status: string;
+    category_status: boolean;
     brands: string;
     updatedAt: string;
 };
@@ -92,14 +92,14 @@ export const columns = (
         ),
         cell: ({ row }) => {
             const category = row.original;
-            const currentStatus = statuses.find((status) => status.value === category.category_status);
+            // const currentStatus = statuses.find((status) => status.value === category.category_status);
 
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline" className="h-8 w-24 p-0 capitalize">
                             <Badge variant="outline" className={`${getStatusClass(category.category_status)} capitalize`}>
-                                {currentStatus && React.createElement(currentStatus.icon, { className: "mr-2" })}
+                                {/*{currentStatus && React.createElement(currentStatus.icon, { className: "mr-2" })}*/}
                                 {category.category_status ? "active" : "inactive"}
                             </Badge>
                         </Button>
