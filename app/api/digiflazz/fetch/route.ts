@@ -4,7 +4,7 @@ import { getDigiAuth } from "@/data/digiflazz";
 import crypto from 'crypto';
 import { db } from "@/lib/db";
 import {NextRequest, NextResponse} from "next/server";
-import {Brand} from "@prisma/client";
+import {Brand} from "@/app/dashboard/(products)/brand/data/schema";
 
 export async function POST(req: NextRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {
