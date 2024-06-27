@@ -33,6 +33,11 @@ function getStatusClass(status: boolean | null) {
     }
 }
 
+const handleOrderSuccess = () => {
+    // Define your success handling logic here
+    console.log("Order successful!");
+};
+
 function formatRupiah(amount: number) {
     return new Intl.NumberFormat("id-ID", {
         style: "currency",

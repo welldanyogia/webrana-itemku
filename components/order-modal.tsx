@@ -35,7 +35,7 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import {LoadingCustom} from "@/app/dashboard/(products)/brand/[slug]/components/loading-custom";
 
-export const OrderModal = ({product,onSuccess})=>{
+export const OrderModal = ({product})=>{
     const [formValues, setFormValues] = useState({});
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
@@ -78,14 +78,14 @@ export const OrderModal = ({product,onSuccess})=>{
                 // console.log("Form created successfully", response.data.form);
                 setIsDialogOpen(false); // Close the dialog
                 setIsLoading(false)
-                onSuccess()
+                // onSuccess()
             } else {
-                onSuccess()
+                // onSuccess()
                 setIsLoading(false)
                 // console.error("Failed to create form", response.status, response.statusText);
             }
         } catch (error : any) {
-            onSuccess()
+            // onSuccess()
             setIsLoading(false)
             // console.error("Error creating form", error);
         }
