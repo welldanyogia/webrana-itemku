@@ -99,7 +99,7 @@ export const BrandDetail = ({brand, values, isSwitchOn, handleInputChange, handl
     const [isLoading, setIsLoading] = useState(false)
     const [formValues, setFormValues] = useState({});
 
-    const handleFormInputChange = (id, value) => {
+    const handleFormInputChange = (id: string, value: string) => {
         setFormValues((prevValues) => ({
             ...prevValues,
             [id]: value,
