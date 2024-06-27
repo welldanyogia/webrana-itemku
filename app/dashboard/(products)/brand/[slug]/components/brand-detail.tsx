@@ -62,7 +62,7 @@ export async function updateBrand({ brand, values }: { brand: Brand; values: Upd
         return null;
     }
 }
-const handleDelete = async ({form,setIsLoading,onSuccess}) => {
+const handleDelete = async ({form,setIsLoading,onSuccess}: HandleDeleteParams) => {
     setIsLoading(true);
     try {
         const response = await axios.post("/api/form/delete", {
