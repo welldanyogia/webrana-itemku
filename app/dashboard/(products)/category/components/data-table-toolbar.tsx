@@ -13,7 +13,7 @@ import {DataTableViewOptions} from "@/app/dashboard/(products)/category/componen
 interface DataTableToolbarProps<TData> {
     table: Table<TData>;
     isLoading : boolean,
-    setIsLoading
+    setIsLoading: (isLoading: boolean) => void;
 }
 
 export function DataTableToolbar<TData>({
