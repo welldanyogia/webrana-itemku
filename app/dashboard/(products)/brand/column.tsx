@@ -51,10 +51,10 @@ export const columns: ColumnDef<Brand>[] = [
             const brand = row.original;
             return <span>{brand.category?.category_name}</span>;
         },
-        filterFn: (row, id, value) => {
-            const categoryName = row.getValue(id)?.category_name;
-            return value.includes(categoryName);
-        },
+        // filterFn: (row, id, value) => {
+        //     const categoryName = row.getValue(id)?.category_name;
+        //     return value.includes(categoryName);
+        // },
     },
     // {
     //     accessorKey: "products",
