@@ -27,12 +27,20 @@ import {DotsHorizontalIcon} from "@radix-ui/react-icons";
 import {EditFormModal} from "@/components/edit-form-modal";
 import {DeleteFormModal} from "@/components/delete-form-modal";
 import {AddOptionsFormModal} from "@/components/add-option-form-modal";
-import {Brand} from "@/app/dashboard/(products)/brand/data/schema";
+import {Brand, FormInputBrand} from "@/app/dashboard/(products)/brand/data/schema";
+
+
 
 export interface UpdateBrandValues {
     mass_profit: number;
     mass_profit_status: boolean;
     fee_itemku: number;
+}
+
+interface HandleDeleteParams {
+    form: FormInputBrand;
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    onSuccess: () => void;
 }
 export async function updateBrand({ brand, values }: { brand: Brand; values: UpdateBrandValues }): Promise<Brand | null> {
     try {
@@ -80,7 +88,14 @@ const handleDelete = async ({form,setIsLoading,onSuccess}) => {
 };
 
 
-export const BrandDetail = ({brand, values, isSwitchOn, handleInputChange, handleSwitchChange, onSuccess}) => {
+export const BrandDetail = ({brand, values, isSwitchOn, handleInputChange, handleSwitchChange, onSuccess}: {
+    brand: Brand;
+    values: UpdateBrandValues;
+    isSwitchOn: boolean;
+    handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSwitchChange: (checked: boolean) => void;
+    onSuccess: () => void;
+}) => {
     const [isLoading, setIsLoading] = useState(false)
     const [formValues, setFormValues] = useState({});
 
@@ -90,7 +105,7 @@ export const BrandDetail = ({brand, values, isSwitchOn, handleInputChange, handl
             [id]: value,
         }));
     };
-    console.log(brand.FormInputBrands)
+    console.log(brand.FormInputBrand)
     const handleSave = async () => {
         setIsLoading(true)
         const updatedBrand = await updateBrand({brand, values});
@@ -157,7 +172,7 @@ export const BrandDetail = ({brand, values, isSwitchOn, handleInputChange, handl
                                     </div>
                                 </div>
                                 <div className='flex flex-col space-y-2'>
-                                    {brand.FormInputBrands.map((form) => (
+                                    {brand.FormInputBrand && brand.FormInputBrand.map((form: FormInputBrand) => (
                                         <div key={form.form_input_id} className='flex flex-col space-y-2'>
                                             <Label htmlFor={form.form_input_id}>{form.name}</Label>
                                             {form.type === 'text' && (
