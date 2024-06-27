@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getBrandByID as fetchBrandByID } from "@/data/digiflazz";
 import {NextRequest, NextResponse} from "next/server";
 import {db} from "@/lib/db";
-import {Product} from "@prisma/client";
+import {Product} from "@/app/dashboard/(products)/brand/[slug]/data/schema";
 
 export async function POST(req: NextRequest, res: NextApiResponse) {
     try {
