@@ -34,12 +34,12 @@ import {DataTablePagination} from "@/app/dashboard/(products)/category/component
 import {columns as generateColumns, Category} from "../column";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 
-interface DataTableProps<TData, TValue> {
-    columns: ColumnDef<TData, TValue>[];
-    data: TData[];
+interface DataTableProps {
+    columns: ColumnDef<Category, any>[];
+    data: Category[];
 }
 
-export function DataTable<TData, TValue>({columns, data}: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({columns, data}: DataTableProps) {
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
