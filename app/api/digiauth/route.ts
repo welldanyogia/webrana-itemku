@@ -16,16 +16,15 @@ export async function GET(req: NextRequest) {
     }
 }
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: NextRequest, res: Response) {
     if (req.method !== 'POST') {
         return NextResponse.json({ message: 'Method Not Allowed' });
     }
 
     try {
         // Parse JSON from request body
-        const { id, digi_balance, username, api_key } = req.body;
+        const { id, digi_balance, username, api_key } = await req.json();
 
-        console.log(req.json())
 
         let result;
 
