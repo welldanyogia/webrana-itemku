@@ -27,8 +27,14 @@ import {DotsHorizontalIcon} from "@radix-ui/react-icons";
 import {EditFormModal} from "@/components/edit-form-modal";
 import {DeleteFormModal} from "@/components/delete-form-modal";
 import {AddOptionsFormModal} from "@/components/add-option-form-modal";
+import {Brand} from "@/app/dashboard/(products)/brand/data/schema";
 
-export async function updateBrand({brand, values}) {
+export interface UpdateBrandValues {
+    mass_profit: number;
+    mass_profit_status: boolean;
+    fee_itemku: number;
+}
+export async function updateBrand({ brand, values }: { brand: Brand; values: UpdateBrandValues }): Promise<Brand | null> {
     try {
         const response = await axios.post(`/api/digiflazz/brand/update`, {
             brandId: brand.brand_id,
