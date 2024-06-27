@@ -75,10 +75,10 @@ export const columns: ColumnDef<Product>[] = [
             const product = row.original;
             return <span>{product.type?.type_name}</span>;
         },
-        filterFn: (row, id, value) => {
-            const typeName = row.getValue(id)?.type?.type_name;
-            return value.includes(typeName);
-        },
+        // filterFn: (row, id, value) => {
+        //     const typeName = row.getValue(id)?.type?.type_name;
+        //     return value.includes(typeName);
+        // },
     },
     {
         accessorKey: "price",
