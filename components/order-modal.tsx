@@ -84,7 +84,7 @@ export const OrderModal = ({product,onSuccess})=>{
                 setIsLoading(false)
                 // console.error("Failed to create form", response.status, response.statusText);
             }
-        } catch (error) {
+        } catch (error : any) {
             onSuccess()
             setIsLoading(false)
             // console.error("Error creating form", error);

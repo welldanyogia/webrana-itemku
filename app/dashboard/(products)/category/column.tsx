@@ -31,7 +31,7 @@ const handleDelete = async (category_id: string) => {
             console.log('Product deleted:', data.product);
             // Optionally, update the UI to remove the deleted product from the list
         }
-    } catch (error) {
+    } catch (error :any) {
         console.error('Error deleting product:', error);
     }
 };

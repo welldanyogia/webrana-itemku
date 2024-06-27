@@ -43,7 +43,7 @@ export async function updateBrand({brand, values}) {
             console.error("Failed to fetch brand data:", response.status, response.statusText);
             return null;
         }
-    } catch (error) {
+    } catch (error : any) {
         console.error("Error fetching brand data:", error);
         return null;
     }
@@ -67,7 +67,7 @@ const handleDelete = async ({form,setIsLoading,onSuccess}) => {
             console.error("Failed to create form", response.status, response.statusText);
             setIsLoading(false);
         }
-    } catch (error) {
+    } catch (error : any) {
         console.error("Error creating form", error);
         setIsLoading(false);
     }

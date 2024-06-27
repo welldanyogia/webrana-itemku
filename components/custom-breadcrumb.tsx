@@ -36,7 +36,7 @@ const CustomBreadcrumb = () => {
                     console.log("brand name : ", brandData)
                     setBrand(brandData); // Set data brand ke state
                 }
-            } catch (error) {
+            } catch (error : any) {
                 console.error("Error fetching brand:", error);
             }
         }

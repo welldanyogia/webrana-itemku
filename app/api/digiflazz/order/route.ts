@@ -114,7 +114,7 @@
 //         // });
 //
 //         return NextResponse.json(req.json());
-//     } catch (error) {
+//     } catch (error : any) {
 //         console.error('Error:', error);
 //         return NextResponse.json({ message: 'Internal Server Error' });
 //     }
@@ -199,7 +199,7 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
 
 
         return NextResponse.json(transaction);
-    } catch (error) {
+    } catch (error : any) {
         if (axios.isAxiosError(error)) {
             console.error('Axios error:', error.response?.data || error.message);
             return NextResponse.json({ message: 'Axios Error', error: error.response?.data || error.message });

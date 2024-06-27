@@ -36,7 +36,7 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
             })
             // console.log(updateBalance)
             return NextResponse.json(balanceResponse);
-        } catch (error) {
+        } catch (error : any) {
             console.error('Error checking balance:', error);
             if (error.response) {
                 // console.error('Response data:', error.response.data);

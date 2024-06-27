@@ -41,7 +41,7 @@ export function DataTableToolbar<TData>({
 
             console.log(response);
             // Optionally handle success response
-        } catch (error) {
+        } catch (error : any) {
             console.error("Error syncing with Digiflazz:", error.message);
             // Optionally handle error state or notify user
         } finally {

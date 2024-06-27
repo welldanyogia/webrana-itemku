@@ -32,7 +32,7 @@ export default function Home({params}: { params: { slug: string } }) {
             } else {
                 console.error("No brand found with the given ID");
             }
-        } catch (error) {
+        } catch (error : any) {
             console.error("Error fetching brand data:", error);
         }
     };

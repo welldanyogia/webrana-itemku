@@ -31,7 +31,7 @@ export default function Home() {
                     username: data?.username,
                     api_key: data?.api_key
                 });
-            } catch (error) {
+            } catch (error : any) {
                 setError(error.message)
                 console.error('Error fetching data:', error);
             }
@@ -51,7 +51,7 @@ export default function Home() {
                 const data = await response.json();
                 // console.log(data)
                 setServerIP(data.serverIP);
-            } catch (error) {
+            } catch (error : any) {
                 console.error('Error fetching server IP:', error);
             }
         };

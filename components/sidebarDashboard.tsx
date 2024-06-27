@@ -33,7 +33,7 @@ export default function SidebarDashboard({children}) {
                 }else {
                     setBalance(response.data);
                 }
-            } catch (error) {
+            } catch (error : any) {
                 // console.log(error)
                 setError('Failed to check balance');
             } finally {

@@ -31,7 +31,7 @@ export const getCategoryName = async () => {
         await fs.writeFile(filePath, JSON.stringify(transformedCategories, null, 2));
 
         return transformedCategories;
-    } catch (error) {
+    } catch (error : any) {
         console.error(error);
         return null;
     }

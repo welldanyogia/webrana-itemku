@@ -11,7 +11,7 @@ export async function getBrandByID(slug: string) {
             console.error("Failed to fetch brand data:", response.status, response.statusText);
             return null;
         }
-    } catch (error) {
+    } catch (error : any) {
         console.error("Error fetching brand data:", error);
         return null;
     }

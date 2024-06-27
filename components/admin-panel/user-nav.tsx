@@ -44,7 +44,7 @@ export function UserNav() {
           const initials = nameParts.length > 1 ? nameParts[0][0] + nameParts[1][0] : nameParts[0][0];
           setInitials(initials.toUpperCase());
         }
-      } catch (error) {
+      } catch (error : any) {
         console.error('Error fetching user:', error);
       }
     };

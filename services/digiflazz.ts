@@ -20,7 +20,7 @@ export const checkBalance = async (username: string, sign: string) => {
         } else {
             return response.data;
         }
-    } catch (error) {
+    } catch (error : any) {
         console.error('Error in checkBalance:', error.response ? error.response.data : error.message);
         throw error;
     }
@@ -45,7 +45,7 @@ export const fetchProducts = async (username: string, sign: string) => {
         } else {
             return response.data;
         }
-    } catch (error) {
+    } catch (error : any) {
         console.error('Error in checkBalance:', error.response ? error.response.data : error.message);
         throw error;
     }

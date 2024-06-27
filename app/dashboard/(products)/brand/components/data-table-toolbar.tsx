@@ -71,7 +71,7 @@ export function DataTableToolbar<TData>({
             }
 
             console.log(response);
-        } catch (error) {
+        } catch (error : any) {
             console.error("Error syncing with Digiflazz:", error.message);
         } finally {
             setIsLoading(false);

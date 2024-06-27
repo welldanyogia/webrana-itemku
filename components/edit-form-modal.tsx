@@ -32,7 +32,7 @@ export const EditFormModal = ({ form, onSuccess }) => {
                 console.error("Failed to create form", response.status, response.statusText);
                 setIsLoading(false);
             }
-        } catch (error) {
+        } catch (error : any) {
             console.error("Error creating form", error);
             setIsLoading(false);
         }

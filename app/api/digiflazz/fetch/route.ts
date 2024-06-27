@@ -145,7 +145,7 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
         );
 
         return NextResponse.json({success: true});
-    } catch (error) {
+    } catch (error : any) {
         console.error('Error checking balance:', error);
         if (error.response) {
             console.error('Response data:', error.response.data);
@@ -201,7 +201,7 @@ export async function DELETE(req: NextRequest, res: NextApiResponse) {
         ]);
 
         return NextResponse.json({ success: true, category: transaction });
-    } catch (error) {
+    } catch (error : any) {
         console.error('Error deleting product:', error);
         return NextResponse.json({ error: error.message });
     }

@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
             },
         });
         return NextResponse.json(digiAuth);
-    } catch (error) {
+    } catch (error : any) {
         console.error(error);
         return NextResponse.json({ error: 'Failed to fetch data' });
     }
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest, res: Response) {
         }
 
         return NextResponse.json({ success: true, message: 'Data updated or created successfully', data: result });
-    } catch (error) {
+    } catch (error : any) {
         console.error('Error updating or creating data:', error);
         return NextResponse.json({ success: false, message: 'Failed to update or create data' });
     }

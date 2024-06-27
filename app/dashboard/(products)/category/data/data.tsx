@@ -26,7 +26,7 @@ export const getCategoryName = async () => {
         }));
 
         return transformedCategories;
-    } catch (error) {
+    } catch (error : any) {
         console.error(error);
         return null;
     }
