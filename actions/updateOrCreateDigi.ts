@@ -34,7 +34,7 @@ export const updateOrCreateDigi = async (values: DigiValues) => {
         }
 
         return { success: "Data Saved!" };
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error updating or creating data:", error.message);
         throw new Error("Failed to update or create data.");
     }
