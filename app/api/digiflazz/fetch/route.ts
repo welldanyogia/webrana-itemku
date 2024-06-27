@@ -4,6 +4,7 @@ import { getDigiAuth } from "@/data/digiflazz";
 import crypto from 'crypto';
 import { db } from "@/lib/db";
 import {NextRequest, NextResponse} from "next/server";
+import {Brand} from "@prisma/client";
 
 export async function POST(req: NextRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {
@@ -177,7 +178,7 @@ export async function DELETE(req: NextRequest, res: NextApiResponse) {
         });
 
         // Collect product deletion promises
-        const deleteProductsPromises = brands.map(brand =>
+        const deleteProductsPromises = brands.map((brand:Brand) =>
             db.product.deleteMany({
                 where: { brand_id: brand.brand_id },
             })
