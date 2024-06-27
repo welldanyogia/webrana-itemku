@@ -11,16 +11,16 @@ import { useState } from "react";
 import { GetStaticProps } from "next";
 import { getCategoryName } from "@/data/digiflazz";
 
-export const getStaticProps: GetStaticProps = async () => {
-    const categories = await getCategoryName();
-    console.log("categories : ", categories);
-
-    return {
-        props: {
-            categories,
-        },
-    };
-};
+// export const getStaticProps: GetStaticProps = async () => {
+//     const categories = await getCategoryName();
+//     console.log("categories : ", categories);
+//
+//     return {
+//         props: {
+//             categories,
+//         },
+//     };
+// };
 
 interface DataTableToolbarProps<TData> {
     table: Table<TData>;
@@ -38,22 +38,22 @@ export function DataTableToolbar<TData>({
 
 
     // Extract unique categories from the table data
-    const uniqueCategories = React.useMemo(() => {
-        const categoryColumn = table.getColumn("category");
-        if (!categoryColumn) return [];
+    // const uniqueCategories = React.useMemo(() => {
+    //     const categoryColumn = table.getColumn("category");
+    //     if (!categoryColumn) return [];
+    //
+    //     const categoryValues = new Set(
+    //         table.getPreFilteredRowModel().rows.map((row) => row.getValue("category")?.category_name)
+    //     );
+    //
+    //     return Array.from(categoryValues).map((category) => ({
+    //         label: category,
+    //         value: category,
+    //         icon: "",
+    //     }));
+    // }, [table]);
 
-        const categoryValues = new Set(
-            table.getPreFilteredRowModel().rows.map((row) => row.getValue("category")?.category_name)
-        );
-
-        return Array.from(categoryValues).map((category) => ({
-            label: category,
-            value: category,
-            icon: "",
-        }));
-    }, [table]);
-
-    console.log("Unique categories : ", uniqueCategories);
+    // console.log("Unique categories : ", uniqueCategories);
 
     const syncWithDigiflazz = async () => {
         setIsLoading(true);
