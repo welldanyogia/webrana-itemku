@@ -28,7 +28,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         // // }
         // console.log("forms : ",forms)
 
-        return NextResponse.json({ form });
+        return NextResponse.json({ option });
     } catch (e : any) {
         // console.log("Error fetching brand data:", e.message);
         return NextResponse.json({ error: e.message });
