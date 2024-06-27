@@ -73,12 +73,12 @@ export const columns: ColumnDef<Brand>[] = [
         ),
         cell: ({row}) => {
             const brand = row.original;
-            const currentStatus = statuses.find((status) => status.value === brand.brand_status);
+            // const currentStatus = statuses.find((status) => status.value === brand.brand_status);
 
             return (
                 <Badge variant="outline"
                        className={`${getStatusClass(brand.brand_status)} capitalize`}>
-                    {currentStatus && React.createElement(currentStatus.icon, {className: "mr-2"})}
+                    {/*{currentStatus && React.createElement(currentStatus.icon, {className: "mr-2"})}*/}
                     {brand.brand_status ? "active" : "inactive"}
                 </Badge>
 
