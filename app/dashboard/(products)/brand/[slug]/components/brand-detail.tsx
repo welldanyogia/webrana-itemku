@@ -38,7 +38,7 @@ export interface UpdateBrandValues {
 }
 
 interface HandleDeleteParams {
-    form: FormInputBrands[];
+    form: FormInputBrands;
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
     onSuccess: () => void;
 }
