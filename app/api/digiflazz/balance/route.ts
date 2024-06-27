@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { checkBalance } from '@/services/digiflazz';
 import { getDigiAuth } from "@/data/digiflazz";
-import { NextResponse } from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import crypto from 'crypto';
 import {db} from "@/lib/db";
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
             const digiAuth = await getDigiAuth();
