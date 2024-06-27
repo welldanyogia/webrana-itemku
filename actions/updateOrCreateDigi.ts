@@ -1,7 +1,12 @@
 "use server"
 import { db } from "@/lib/db";
 
-export const updateOrCreateDigi = async (values) => {
+export interface DigiValues {
+    id: number | null; // Adjust the type according to your database schema
+    username: string;
+    api_key: string;
+}
+export const updateOrCreateDigi = async (values: DigiValues) => {
     const { id, username, api_key } = values;
 
     try {
