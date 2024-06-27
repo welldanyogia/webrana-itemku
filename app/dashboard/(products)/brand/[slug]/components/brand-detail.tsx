@@ -124,8 +124,8 @@ export const BrandDetail = ({brand, values, isSwitchOn, handleInputChange, handl
                 <CardHeader>
                     <div className='flex justify-between'>
                         <div>
-                            <CardTitle>{brand.brand_name}</CardTitle>
-                            <CardDescription>Manage your {brand.brand_name} products</CardDescription>
+                            <CardTitle>{brand.brand_name as string}</CardTitle>
+                            <CardDescription>Manage your {brand.brand_name as string} products</CardDescription>
                         </div>
                         <AddFormModal brand={brand} onSuccess={onSuccess}/>
                     </div>
