@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getBrandByID as fetchBrandByID } from "@/data/digiflazz";
 import {NextRequest, NextResponse} from "next/server";
 import {db} from "@/lib/db";
+import {Product} from "@prisma/client";
 
 export async function POST(req: NextRequest, res: NextApiResponse) {
     try {
@@ -26,7 +27,7 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
                 }
             });
 
-            const updatedProductsPromises = products.map(product => {
+            const updatedProductsPromises = products.map((product:Product) => {
                 const newSellingPrice = product.price + (product.price * (updatedBrand.mass_profit / 100));
                 return db.product.update({
                     where: {
