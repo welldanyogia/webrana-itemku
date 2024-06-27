@@ -1,26 +1,12 @@
 "use client"
-import {ColumnDef} from "@tanstack/react-table";
-import {Transaction} from "@/app/dashboard/transactions/column";
-import {Brand} from "@/app/dashboard/(products)/brand/data/schema";
-import {
-    DropdownMenu,
-    DropdownMenuContent, DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
-import {Button} from "@/components/ui/button";
-import {Badge} from "@/components/ui/badge";
+import { ColumnDef } from "@tanstack/react-table";
+import { Product } from "@/app/dashboard/(products)/brand/[slug]/data/schema";
+import { DataTableColumnHeader } from "@/app/dashboard/(products)/brand/[slug]/components/data-table-column-header";
+import { Badge } from "@/components/ui/badge";
 import React from "react";
-import {format} from "date-fns";
-import {id} from "date-fns/locale";
-import {CheckCircledIcon} from "@radix-ui/react-icons";
-import {Trash2Icon} from "lucide-react";
-import {DataTableColumnHeader} from "@/app/dashboard/(products)/brand/[slug]/components/data-table-column-header";;
-import {Product} from "@/app/dashboard/(products)/brand/[slug]/data/schema";
-import {OrderModal} from "@/components/order-modal";
-import {statuses} from "@/app/dashboard/transactions/data/data";
-
+import { format } from "date-fns";
+import { id } from "date-fns/locale";
+import { OrderModal } from "@/components/order-modal";
 
 function getStatusClass(status: boolean | null) {
     switch (status) {
@@ -33,11 +19,6 @@ function getStatusClass(status: boolean | null) {
     }
 }
 
-const handleOrderSuccess = () => {
-    // Define your success handling logic here
-    console.log("Order successful!");
-};
-
 function formatRupiah(amount: number) {
     return new Intl.NumberFormat("id-ID", {
         style: "currency",
@@ -45,16 +26,15 @@ function formatRupiah(amount: number) {
     }).format(amount)
 }
 
-
 export const columns: ColumnDef<Product>[] = [
     {
         header: "No",
-        cell: ({row}) => row.index + 1,
+        cell: ({ row }) => row.index + 1,
     },
     {
         accessorKey: "product_name",
-        header: ({column}) => (
-            <DataTableColumnHeader column={column} title="Product Name"/>
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="Product Name" />
         ),
     },
     {
@@ -63,13 +43,9 @@ export const columns: ColumnDef<Product>[] = [
             <DataTableColumnHeader column={column} title="Brand" />
         ),
         cell: ({ row }) => {
-            const product = row.original;
+            const product = row.original as Product;
             return <span>{product.brand?.brand_name ?? ""}</span>;
         },
-        // filterFn: (row, id, value) => {
-        //     const brandName = row.getValue(id)?.brand?.brannd;
-        //     return value.includes(brandName);
-        // },
     },
     {
         accessorKey: "type",
@@ -77,41 +53,37 @@ export const columns: ColumnDef<Product>[] = [
             <DataTableColumnHeader column={column} title="Type" />
         ),
         cell: ({ row }) => {
-            const product = row.original;
-            return <span>{product.type?.type_name}</span>;
+            const product = row.original as Product;
+            return <span>{product.type?.type_name ?? ""}</span>;
         },
-        // filterFn: (row, id, value) => {
-        //     const typeName = row.getValue(id)?.type?.type_name;
-        //     return value.includes(typeName);
-        // },
     },
     {
         accessorKey: "price",
-        header: ({column}) => (
-            <DataTableColumnHeader column={column} title="Price"/>
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="Price" />
         ),
-        cell: ({row}) => {
-            const product = row.original;
+        cell: ({ row }) => {
+            const product = row.original as Product;
             return <span>{formatRupiah(product.price)}</span>;
         },
     },
     {
         accessorKey: "selling_price",
-        header: ({column}) => (
-            <DataTableColumnHeader column={column} title="Selling Price"/>
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="Selling Price" />
         ),
-        cell: ({row}) => {
-            const product = row.original;
+        cell: ({ row }) => {
+            const product = row.original as Product;
             return <span>{formatRupiah(product.selling_price)}</span>;
         },
     },
     {
         accessorKey: "fee_itemku",
-        header: ({column}) => (
-            <DataTableColumnHeader column={column} title="Fee Itemku"/>
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="Fee Itemku" />
         ),
-        cell: ({row}) => {
-            const product = row.original;
+        cell: ({ row }) => {
+            const product = row.original as Product;
             const feeItemku = product.brand?.fee_itemku || 0; // Default to 0 if fee_itemku is null or undefined
             const fee = product.selling_price * (feeItemku / 100);
             return <span>{formatRupiah(fee)}</span>;
@@ -119,37 +91,29 @@ export const columns: ColumnDef<Product>[] = [
     },
     {
         accessorKey: "profit",
-        header: ({column}) => (
-            <DataTableColumnHeader column={column} title="Profit"/>
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="Profit" />
         ),
-        cell: ({row}) => {
-            const product = row.original;
+        cell: ({ row }) => {
+            const product = row.original as Product;
             const feeItemku = product.brand?.fee_itemku || 0; // Default to 0 if fee_itemku is null or undefined
-            const fee = product.selling_price*(feeItemku/100)
-            const profit = product.selling_price-product.price-fee
+            const fee = product.selling_price * (feeItemku / 100);
+            const profit = product.selling_price - product.price - fee;
             return <span>{formatRupiah(profit)}</span>;
         },
     },
     {
         accessorKey: "product_status",
-        header: ({column}) => (
-            <DataTableColumnHeader column={column} title="Product Status"/>
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="Product Status" />
         ),
-        cell: ({row}) => {
-            const product = row.original;
-            // const currentStatus = statuses.find((status) => status.value === product.product_status);
-
+        cell: ({ row }) => {
+            const product = row.original as Product;
             return (
-                <Badge variant="outline"
-                       className={`${getStatusClass(product.product_status)} capitalize`}>
-                    {/*{currentStatus && React.createElement(currentStatus.icon, {className: "mr-2"})}*/}
+                <Badge variant="outline" className={`${getStatusClass(product.product_status)} capitalize`}>
                     {product.product_status ? "active" : "inactive"}
                 </Badge>
-
             );
-        },
-        filterFn: (row, id, value) => {
-            return value.includes(row.getValue(id));
         },
     },
     {
@@ -158,7 +122,7 @@ export const columns: ColumnDef<Product>[] = [
             <DataTableColumnHeader column={column} title="Last Updated" />
         ),
         cell: ({ row }) => {
-            const product = row.original;
+            const product = row.original as Product;
             const formattedDate = format(new Date(product.updatedAt), "dd MMM yyyy HH:mm:ss", { locale: id });
             return <span>{formattedDate}</span>;
         },
@@ -168,23 +132,12 @@ export const columns: ColumnDef<Product>[] = [
         enableHiding: false,
         header: "Actions",
         cell: ({ row }) => {
-            const product = row.original;
-
+            const product = row.original as Product;
             return (
                 <div className="flex items-center gap-2">
-                    <OrderModal product={product}/>
-                    {/*<Button variant="ghost" className="bg-emerald-500/50">*/}
-                    {/*    <CheckCircledIcon />*/}
-                    {/*</Button>*/}
-                    {/*<Button variant="ghost" className="bg-destructive" onClick={()=>{*/}
-                    {/*    handleDelete(category.category_id).then(r => console.log(r))*/}
-                    {/*    console.log("id : ",category.category_id,category.category_name)*/}
-                    {/*}}>*/}
-                    {/*    <Trash2Icon className="w-4 h-4" />*/}
-                    {/*</Button>*/}
+                    <OrderModal product={product} />
                 </div>
             );
         },
     },
-
-]
+];
