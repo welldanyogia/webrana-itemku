@@ -42,22 +42,22 @@ export function DataTableToolbar<TData>({
 
 
     // Extract unique categories from the table data
-    const uniqueTypes = React.useMemo(() => {
-        const categoryColumn = table.getColumn("type");
-        if (!categoryColumn) return [];
+    // const uniqueTypes = React.useMemo(() => {
+    //     const categoryColumn = table.getColumn("type");
+    //     if (!categoryColumn) return [];
+    //
+    //     const categoryValues = new Set(
+    //         table.getPreFilteredRowModel().rows.map((row) => row.getValue("type").type_name)
+    //     );
+    //
+    //     return Array.from(categoryValues).map((category) => ({
+    //         label: category,
+    //         value: category,
+    //         icon: "",
+    //     }));
+    // }, [table]);
 
-        const categoryValues = new Set(
-            table.getPreFilteredRowModel().rows.map((row) => row.getValue("type").type_name)
-        );
-
-        return Array.from(categoryValues).map((category) => ({
-            label: category,
-            value: category,
-            icon: "",
-        }));
-    }, [table]);
-
-    console.log("Unique categories : ", uniqueTypes);
+    // console.log("Unique categories : ", uniqueTypes);
 
     const syncWithDigiflazz = async () => {
         setIsLoading(true);
