@@ -64,7 +64,7 @@ export const columns: ColumnDef<Product>[] = [
         ),
         cell: ({ row }) => {
             const product = row.original;
-            return <span>{product.brand?.brand_name}</span>;
+            return <span>{product.brand?.brand_name ?? ""}</span>;
         },
         // filterFn: (row, id, value) => {
         //     const brandName = row.getValue(id)?.brand?.brannd;
