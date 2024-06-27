@@ -33,7 +33,7 @@ function getStatusClass(status: boolean | null) {
     }
 }
 
-function formatRupiah(amount) {
+function formatRupiah(amount: number) {
     return new Intl.NumberFormat("id-ID", {
         style: "currency",
         currency: "IDR",
