@@ -97,7 +97,7 @@ export const BrandDetail = ({brand, values, isSwitchOn, handleInputChange, handl
     onSuccess: () => void;
 }) => {
     const [isLoading, setIsLoading] = useState(false)
-    const [formValues, setFormValues] = useState({});
+    const [formValues, setFormValues] = useState<Record<string, string>>({});
 
     const handleFormInputChange = (id: string, value: string) => {
         setFormValues((prevValues) => ({
