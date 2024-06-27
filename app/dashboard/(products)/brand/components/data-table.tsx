@@ -65,7 +65,7 @@ export function DataTable<TData, TValue>({
                     <CardDescription>
                         Manage your brands
                     </CardDescription>
-                    <DataTableToolbar table={table} isLoading={isLoading} setIsLoading={isLoading}/>
+                    <DataTableToolbar table={table} isLoading={isLoading} setIsLoading={setIsLoading}/>
                 </CardHeader>
                 {/*</div>*/}
                 {/*<div className="rounded-md border">*/}
