@@ -84,8 +84,8 @@ export const columns: ColumnDef<Product>[] = [
         ),
         cell: ({ row }) => {
             const product = row.original as Product;
-            const feeItemku = product.brand?.fee_itemku || 0; // Default to 0 if fee_itemku is null or undefined
-            const fee = product.selling_price * (feeItemku / 100);
+            const feeItemku = product.brand?.fee_itemku ?? 0; // Default to 0 if fee_itemku is null or undefined
+            const fee = (product.selling_price * feeItemku) / 100;
             return <span>{formatRupiah(fee)}</span>;
         },
     },
@@ -96,8 +96,8 @@ export const columns: ColumnDef<Product>[] = [
         ),
         cell: ({ row }) => {
             const product = row.original as Product;
-            const feeItemku = product.brand?.fee_itemku || 0; // Default to 0 if fee_itemku is null or undefined
-            const fee = product.selling_price * (feeItemku / 100);
+            const feeItemku = product.brand?.fee_itemku ?? 0; // Default to 0 if fee_itemku is null or undefined
+            const fee = (product.selling_price * feeItemku) / 100;
             const profit = product.selling_price - product.price - fee;
             return <span>{formatRupiah(profit)}</span>;
         },
