@@ -43,7 +43,7 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
         }
 
         return NextResponse.json({ updatedBrand });
-    } catch (e) {
+    } catch (e : any) {
         console.log("Error fetching brand data:", e.message);
         return NextResponse.json({ error: e.message });
     }

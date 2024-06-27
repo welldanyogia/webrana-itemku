@@ -144,7 +144,7 @@ export const getBrandName = async (brand_id)=>{
         })
         console.log(brand)
         return brand
-    }catch (e) {
+    }catch (e : any) {
 
     }
 }
@@ -174,7 +174,7 @@ export const getFormsByBrandId = async (brand_id)=>{
         })
 
         return forms
-    }catch (e) {
+    }catch (e : any) {
         return null
     }
 }
@@ -184,7 +184,7 @@ export const getAllTransactions = async () => {
         const transactions = await db.transaction.findMany()
 
         return transactions
-    }catch (e) {
+    }catch (e : any) {
         return null
     }
 }
