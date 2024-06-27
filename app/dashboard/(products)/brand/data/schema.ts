@@ -36,7 +36,7 @@ export const brandSchema = z.object({
     fee_itemku: z.number().nullable(), // Nullable number for fee_itemku
     mass_profit_status: z.boolean(),
     code: z.string(),
-    FormInputBrand: z.array(FormInputBrandsSchema).nullable(),
+    FormInputBrand: z.array(FormInputBrandsSchema),
     products: z.array(z.any()).nullable(),
     createdAt: z.string(), // Assuming createdAt is a string representation of DateTime
     updatedAt: z.string(), // Assuming updatedAt is a string representation of DateTime
@@ -44,5 +44,5 @@ export const brandSchema = z.object({
 
 // Infer the Brand type from the schema
 export type Brand = z.infer<typeof brandSchema>;
-export type FormInputBrand = z.infer<typeof FormInputBrandsSchema>;
+export type FormInputBrands = z.infer<typeof FormInputBrandsSchema>;
 export type OptionSelectInput = z.infer<typeof OptionSelectInputsSchema>;

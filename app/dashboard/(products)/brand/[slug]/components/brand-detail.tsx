@@ -27,7 +27,7 @@ import {DotsHorizontalIcon} from "@radix-ui/react-icons";
 import {EditFormModal} from "@/components/edit-form-modal";
 import {DeleteFormModal} from "@/components/delete-form-modal";
 import {AddOptionsFormModal} from "@/components/add-option-form-modal";
-import {Brand, FormInputBrand} from "@/app/dashboard/(products)/brand/data/schema";
+import {Brand, FormInputBrands} from "@/app/dashboard/(products)/brand/data/schema";
 
 
 
@@ -38,7 +38,7 @@ export interface UpdateBrandValues {
 }
 
 interface HandleDeleteParams {
-    form: FormInputBrand;
+    form: FormInputBrands[];
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
     onSuccess: () => void;
 }
@@ -172,7 +172,7 @@ export const BrandDetail = ({brand, values, isSwitchOn, handleInputChange, handl
                                     </div>
                                 </div>
                                 <div className='flex flex-col space-y-2'>
-                                    {brand.FormInputBrand && brand.FormInputBrand.map((form: FormInputBrand) => (
+                                    {brand.FormInputBrand && brand.FormInputBrand.map((form: FormInputBrands) => (
                                         <div key={form.form_input_id} className='flex flex-col space-y-2'>
                                             <Label htmlFor={form.form_input_id}>{form.name}</Label>
                                             {form.type === 'text' && (
