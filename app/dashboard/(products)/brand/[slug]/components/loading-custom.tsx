@@ -1,6 +1,9 @@
 import React from "react";
+interface LoadingCustomProps {
+    title: string; // Specify the type of 'title' prop
+}
 
-export const LoadingCustom = ({title}) => {
+export const LoadingCustom: React.FC<LoadingCustomProps> = ({ title }) => {
   return (
       <div
           // className='w-full h-40'
