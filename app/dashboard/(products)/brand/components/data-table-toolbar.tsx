@@ -3,13 +3,11 @@
 import { Cross2Icon, SymbolIcon } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
-import { statuses } from "../../category/data/data";
 import * as React from "react";
-import { DataTableFacetedFilter } from "@/app/dashboard/(products)/category/components/data-table-faceted-filter";
-import { DataTableViewOptions } from "@/app/dashboard/(products)/category/components/data-table-view-options";
 import { useState } from "react";
 import { GetStaticProps } from "next";
 import { getCategoryName } from "@/data/digiflazz";
+import {DataTableViewOptions} from "@/app/dashboard/(products)/brand/components/data-table-view-options";
 
 // export const getStaticProps: GetStaticProps = async () => {
 //     const categories = await getCategoryName();

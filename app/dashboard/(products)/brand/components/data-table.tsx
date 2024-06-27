@@ -95,7 +95,7 @@ export function DataTable<TData extends { brand_id: string }, TValue>({
                                     <TableRow
                                         onClick={() => handleRowClick(row.original.brand_id)}
                                         key={row.id}
-                                        data-state={row.getIsSelected() && "selected"}
+                                        // data-state={row.getIsSelected() && "selected"}
                                     >
                                         {row.getVisibleCells().map((cell) => (
                                             <TableCell key={cell.id}>

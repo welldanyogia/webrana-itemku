@@ -16,10 +16,10 @@ import {format} from "date-fns";
 import {id} from "date-fns/locale";
 import {CheckCircledIcon} from "@radix-ui/react-icons";
 import {Trash2Icon} from "lucide-react";
-import {DataTableColumnHeader} from "@/app/dashboard/(products)/brand/[slug]/components/data-table-column-header";
-import {statuses} from "@/app/dashboard/(products)/category/data/data";
+import {DataTableColumnHeader} from "@/app/dashboard/(products)/brand/[slug]/components/data-table-column-header";;
 import {Product} from "@/app/dashboard/(products)/brand/[slug]/data/schema";
 import {OrderModal} from "@/components/order-modal";
+import {statuses} from "@/app/dashboard/transactions/data/data";
 
 
 function getStatusClass(status: boolean | null) {
@@ -137,12 +137,12 @@ export const columns: ColumnDef<Product>[] = [
         ),
         cell: ({row}) => {
             const product = row.original;
-            const currentStatus = statuses.find((status) => status.value === product.product_status);
+            // const currentStatus = statuses.find((status) => status.value === product.product_status);
 
             return (
                 <Badge variant="outline"
                        className={`${getStatusClass(product.product_status)} capitalize`}>
-                    {currentStatus && React.createElement(currentStatus.icon, {className: "mr-2"})}
+                    {/*{currentStatus && React.createElement(currentStatus.icon, {className: "mr-2"})}*/}
                     {product.product_status ? "active" : "inactive"}
                 </Badge>
 
