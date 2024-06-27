@@ -6,25 +6,7 @@ import {LoadingCustom} from "@/app/dashboard/(products)/brand/[slug]/components/
 import {BrandDetail} from "@/app/dashboard/(products)/brand/[slug]/components/brand-detail";
 import {DataTable} from "@/app/dashboard/(products)/brand/[slug]/components/data-table";
 import {columns} from "@/app/dashboard/(products)/brand/[slug]/column";
-
-
-export async function getBrandByID(slug: string) {
-    try {
-        const response = await axios.post(`/api/digiflazz/brand`, {
-            brandId: slug
-        });
-        // console.log("response : ", response)
-        if (response.status === 200) {
-            return response.data.brand;
-        } else {
-            console.error("Failed to fetch brand data:", response.status, response.statusText);
-            return null;
-        }
-    } catch (error) {
-        console.error("Error fetching brand data:", error);
-        return null;
-    }
-}
+import {getBrandByID} from "@/app/api/digiflazz/brand";
 
 
 export default function Home({params}: { params: { slug: string } }) {
